@@ -1,0 +1,25 @@
+.login-container {
+  max-width: 600px; /* Increase this value to make the form wider */
+  margin: 0 auto;
+}
+
+.login-card {
+  padding: 2rem;
+}
+
+.login-header {
+  margin-bottom: 1rem;
+}
+
+.login-input-group {
+  margin-bottom: 1rem;
+}
+
+.login-button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.login-footer {
+  margin-top: 1rem;
+}
