@@ -16,10 +16,14 @@ const PublicRoute = ({ children }) => {
       setIsLoading(true)
       try {
         const userData = await fetchUserData()
-        if (userData) {
+        console.log(userData)
+        if (userData?.user?.role === 'admin') {
           dispatch(setCredentials(userData.user)) // Update Redux store with user data
           setIsAuthenticated(true)
           return
+        } else {
+          dispatch(logout())
+          setIsError(true)
         }
       } catch (error) {
         dispatch(logout())

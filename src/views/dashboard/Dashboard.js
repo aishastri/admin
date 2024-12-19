@@ -397,212 +397,217 @@
 
 // export default Dashboard
 
-import React from 'react'
-import { useGetDashboardDataQuery } from '../../app/service/uploadApiSlice'
-import { CSpinner } from '@coreui/react'
+// import React from 'react'
+// import { useGetDashboardDataQuery } from '../../app/service/uploadApiSlice'
+// import { CSpinner } from '@coreui/react'
+
+// const Dashboard = () => {
+//   const { data, error, isLoading, isFetching, refetch } = useGetDashboardDataQuery()
+
+//   const processedData = data?.data || {
+//     history_email: 0,
+//     history_file: 0,
+//     history: 0,
+//   }
+
+//   const StatCard = ({ title, value, icon }) => (
+//     <div
+//       className="stat-card"
+//       style={{
+//         backgroundColor: 'white',
+//         borderRadius: '8px',
+//         padding: '1.5rem',
+//         boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+//         transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+//         cursor: 'pointer',
+//       }}
+//       onMouseEnter={(e) => {
+//         e.currentTarget.style.transform = 'translateY(-2px)'
+//         e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.15)'
+//       }}
+//       onMouseLeave={(e) => {
+//         e.currentTarget.style.transform = 'translateY(0)'
+//         e.currentTarget.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)'
+//       }}
+//     >
+//       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+//         <div>
+//           <p
+//             style={{
+//               color: '#666',
+//               fontSize: '0.875rem',
+//               marginBottom: '0.5rem',
+//               fontWeight: '500',
+//             }}
+//           >
+//             {title}
+//           </p>
+//           <h3
+//             style={{
+//               fontSize: '1.5rem',
+//               fontWeight: 'bold',
+//               margin: '0',
+//               color: '#1a1a1a',
+//             }}
+//           >
+//             {value.toLocaleString()}
+//           </h3>
+//         </div>
+//         <div
+//           style={{
+//             fontSize: '2rem',
+//             color: '#666',
+//             backgroundColor: '#f5f5f5',
+//             padding: '0.75rem',
+//             borderRadius: '50%',
+//             display: 'flex',
+//             alignItems: 'center',
+//             justifyContent: 'center',
+//           }}
+//         >
+//           {icon}
+//         </div>
+//       </div>
+//     </div>
+//   )
+
+//   // const LoadingSpinner = () => (
+//   //   <div
+//   //     style={{
+//   //       display: 'flex',
+//   //       justifyContent: 'center',
+//   //       alignItems: 'center',
+//   //       minHeight: '400px',
+//   //     }}
+//   //   >
+//   //     <div
+//   //       style={{
+//   //         width: '48px',
+//   //         height: '48px',
+//   //         border: '4px solid #f3f3f3',
+//   //         borderTop: '4px solid #3498db',
+//   //         borderRadius: '50%',
+//   //         animation: 'spin 1s linear infinite',
+//   //       }}
+//   //     />
+//   //   </div>
+//   // )
+
+//   const ErrorMessage = ({ message }) => (
+//     <div
+//       style={{
+//         backgroundColor: '#fee2e2',
+//         border: '1px solid #ef4444',
+//         color: '#b91c1c',
+//         padding: '1rem',
+//         borderRadius: '6px',
+//         margin: '1rem 0',
+//       }}
+//     >
+//       <strong style={{ marginRight: '0.5rem' }}>Error:</strong>
+//       <span>{message}</span>
+//     </div>
+//   )
+
+//   const RefreshButton = () => (
+//     <button
+//       onClick={() => refetch()}
+//       disabled={isFetching}
+//       style={{
+//         backgroundColor: '#3498db',
+//         color: 'white',
+//         border: 'none',
+//         padding: '0.5rem 1rem',
+//         borderRadius: '6px',
+//         cursor: isFetching ? 'not-allowed' : 'pointer',
+//         opacity: isFetching ? 0.7 : 1,
+//         transition: 'opacity 0.2s ease',
+//         display: 'flex',
+//         alignItems: 'center',
+//         gap: '0.5rem',
+//       }}
+//     >
+//       <span
+//         style={{
+//           display: 'inline-block',
+//           animation: isFetching ? 'spin 1s linear infinite' : 'none',
+//         }}
+//       >
+//         ↻
+//       </span>
+//       {isFetching ? 'Refreshing...' : 'Refresh Data'}
+//     </button>
+//   )
+
+//   if (isLoading) {
+//     return (
+//       <div className="d-flex justify-content-center align-items-center" style={{ height: '400px' }}>
+//         <CSpinner color="primary" />
+//       </div>
+//     )
+//   }
+
+//   return (
+//     <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '2rem' }}>
+//       <div
+//         style={{
+//           backgroundColor: 'white',
+//           borderRadius: '8px',
+//           padding: '1.5rem',
+//           marginBottom: '1rem',
+//           boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+//           display: 'flex',
+//           justifyContent: 'space-between',
+//           alignItems: 'center',
+//         }}
+//       >
+//         <h1
+//           style={{
+//             fontSize: '1.5rem',
+//             fontWeight: 'bold',
+//             color: '#1a1a1a',
+//             margin: 0,
+//           }}
+//         >
+//           Processing Statistics
+//         </h1>
+//         <RefreshButton />
+//       </div>
+
+//       {error && <ErrorMessage message={error?.data?.message || 'Failed to load data'} />}
+
+//       <div
+//         style={{
+//           display: 'grid',
+//           gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+//           gap: '1.5rem',
+//         }}
+//       >
+//         <StatCard
+//           title="Email Processed Attachments"
+//           value={processedData.history_email}
+//           icon="📧"
+//         />
+//         <StatCard title="Manual Upload" value={processedData.history_file} icon="📁" />
+//         <StatCard title="Total Processed Documents" value={processedData.history} icon="📊" />
+//       </div>
+
+//       <style>
+//         {`
+//           @keyframes spin {
+//             to {
+//               transform: rotate(360deg);
+//             }
+//           }
+//         `}
+//       </style>
+//     </div>
+//   )
+// }
+
+// export default Dashboard
 
 const Dashboard = () => {
-  const { data, error, isLoading, isFetching, refetch } = useGetDashboardDataQuery()
-
-  const processedData = data?.data || {
-    history_email: 0,
-    history_file: 0,
-    history: 0,
-  }
-
-  const StatCard = ({ title, value, icon }) => (
-    <div
-      className="stat-card"
-      style={{
-        backgroundColor: 'white',
-        borderRadius: '8px',
-        padding: '1.5rem',
-        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-        transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-        cursor: 'pointer',
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = 'translateY(-2px)'
-        e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.15)'
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = 'translateY(0)'
-        e.currentTarget.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)'
-      }}
-    >
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div>
-          <p
-            style={{
-              color: '#666',
-              fontSize: '0.875rem',
-              marginBottom: '0.5rem',
-              fontWeight: '500',
-            }}
-          >
-            {title}
-          </p>
-          <h3
-            style={{
-              fontSize: '1.5rem',
-              fontWeight: 'bold',
-              margin: '0',
-              color: '#1a1a1a',
-            }}
-          >
-            {value.toLocaleString()}
-          </h3>
-        </div>
-        <div
-          style={{
-            fontSize: '2rem',
-            color: '#666',
-            backgroundColor: '#f5f5f5',
-            padding: '0.75rem',
-            borderRadius: '50%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          {icon}
-        </div>
-      </div>
-    </div>
-  )
-
-  // const LoadingSpinner = () => (
-  //   <div
-  //     style={{
-  //       display: 'flex',
-  //       justifyContent: 'center',
-  //       alignItems: 'center',
-  //       minHeight: '400px',
-  //     }}
-  //   >
-  //     <div
-  //       style={{
-  //         width: '48px',
-  //         height: '48px',
-  //         border: '4px solid #f3f3f3',
-  //         borderTop: '4px solid #3498db',
-  //         borderRadius: '50%',
-  //         animation: 'spin 1s linear infinite',
-  //       }}
-  //     />
-  //   </div>
-  // )
-
-  const ErrorMessage = ({ message }) => (
-    <div
-      style={{
-        backgroundColor: '#fee2e2',
-        border: '1px solid #ef4444',
-        color: '#b91c1c',
-        padding: '1rem',
-        borderRadius: '6px',
-        margin: '1rem 0',
-      }}
-    >
-      <strong style={{ marginRight: '0.5rem' }}>Error:</strong>
-      <span>{message}</span>
-    </div>
-  )
-
-  const RefreshButton = () => (
-    <button
-      onClick={() => refetch()}
-      disabled={isFetching}
-      style={{
-        backgroundColor: '#3498db',
-        color: 'white',
-        border: 'none',
-        padding: '0.5rem 1rem',
-        borderRadius: '6px',
-        cursor: isFetching ? 'not-allowed' : 'pointer',
-        opacity: isFetching ? 0.7 : 1,
-        transition: 'opacity 0.2s ease',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '0.5rem',
-      }}
-    >
-      <span
-        style={{
-          display: 'inline-block',
-          animation: isFetching ? 'spin 1s linear infinite' : 'none',
-        }}
-      >
-        ↻
-      </span>
-      {isFetching ? 'Refreshing...' : 'Refresh Data'}
-    </button>
-  )
-
-  if (isLoading) {
-    return (
-      <div className="d-flex justify-content-center align-items-center" style={{ height: '400px' }}>
-        <CSpinner color="primary" />
-      </div>
-    )
-  }
-
-  return (
-    <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '2rem' }}>
-      <div
-        style={{
-          backgroundColor: 'white',
-          borderRadius: '8px',
-          padding: '1.5rem',
-          marginBottom: '1rem',
-          boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
-        <h1
-          style={{
-            fontSize: '1.5rem',
-            fontWeight: 'bold',
-            color: '#1a1a1a',
-            margin: 0,
-          }}
-        >
-          Processing Statistics
-        </h1>
-        <RefreshButton />
-      </div>
-
-      {error && <ErrorMessage message={error?.data?.message || 'Failed to load data'} />}
-
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '1.5rem',
-        }}
-      >
-        <StatCard
-          title="Email Processed Attachments"
-          value={processedData.history_email}
-          icon="📧"
-        />
-        <StatCard title="Manual Upload" value={processedData.history_file} icon="📁" />
-        <StatCard title="Total Processed Documents" value={processedData.history} icon="📊" />
-      </div>
-
-      <style>
-        {`
-          @keyframes spin {
-            to {
-              transform: rotate(360deg);
-            }
-          }
-        `}
-      </style>
-    </div>
-  )
+  return <h6>This is Dashboard</h6>
 }
-
 export default Dashboard

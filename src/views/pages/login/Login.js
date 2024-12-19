@@ -60,6 +60,7 @@ const Login = () => {
     e.preventDefault()
     try {
       const res = await login({ email, password }).unwrap()
+      console.log(res.user.role)
 
       if (res.user.role == 'admin') {
         // console.log(res)

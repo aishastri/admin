@@ -34,7 +34,7 @@ const UserDetails = () => {
     try {
       const newStatus = !user.isActive // Toggle the current status
       await changeStatus({ id, isActive: newStatus }).unwrap()
-      toast.success(`Status changed successfully to ${newStatus ? 'InActive' : 'Active'}`)
+      toast.success(`Status changed successfully to ${!newStatus ? 'InActive' : 'Active'}`)
 
       //alert(`Status changed successfully to ${newStatus ? 'Active' : 'Inactive'}`)
       refetch() // Refresh the user data after the mutation
