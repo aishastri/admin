@@ -21,7 +21,7 @@ const AddCustomerForm = () => {
     try {
       const response = await addCustomer(formData).unwrap()
       if (response.status === 'success') {
-        toast.success("user added successfully")
+        toast.success('user added successfully')
 
         navigate('/customers') // Redirect to home page
       } else {
@@ -33,7 +33,14 @@ const AddCustomerForm = () => {
   }
 
   return (
-    <Container className="mt-5">
+    <Container
+      className="mt-5"
+      style={{
+        opacity: isLoading ? 0.7 : 1, // Reduce opacity when status is changing
+        pointerEvents: isLoading ? 'none' : 'auto', // Disable interactions
+        transition: 'opacity 0.3s ease', // Smooth transition
+      }}
+    >
       <h2 className="mb-4">Add New Customer</h2>
       {error && <Alert variant="danger">{error}</Alert>}
       <Form onSubmit={handleSubmit}>
