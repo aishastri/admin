@@ -36,9 +36,9 @@ const AddCustomerForm = () => {
     <Container
       className="mt-5"
       style={{
-        opacity: isLoading ? 0.7 : 1, // Reduce opacity when status is changing
+        backgroundColor: isLoading ? 'rgba(255, 255, 255, 0.6)' : 'transparent', // Light white background when changing status
         pointerEvents: isLoading ? 'none' : 'auto', // Disable interactions
-        transition: 'opacity 0.3s ease', // Smooth transition
+        transition: 'background-color 0.3s ease', // Smooth transition for background color
       }}
     >
       <h2 className="mb-4">Add New Customer</h2>
