@@ -26,8 +26,8 @@ import './Login.css' // Import the custom CSS file
 import Loading from '../../Loading'
 
 const Login = () => {
-  const [email, setEmail] = useState('naveenpothula2001@gmail.com')
-  const [password, setPassword] = useState('57365645')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
 
   console.log(import.meta.env.VITE_BASE_URL)
